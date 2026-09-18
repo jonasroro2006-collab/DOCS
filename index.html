@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="JONAS RORO — CV, devis et lettres professionnelles créés en quelques minutes.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+<title>JONAS RORO — Documents professionnels</title>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">JR</span> JONAS <b>RORO</b></div>
+  <div style="display:flex;gap:8px">
+    <button id="installBtn" class="adminBtn" style="display:none" onclick="installApp()">⬇️ Installer l'application</button>
+  </div>
+</header>
+<main>
+  <section id="home" class="view active">
+    <div class="hero"><span>DOCUMENTS PROFESSIONNELS</span><h1>Créez votre document<br><strong>simplement.</strong></h1><p>Choisissez un document, répondez aux questions et envoyez votre demande.</p></div>
+    <h2>Que voulez-vous créer ?</h2>
+    <div class="cards">
+      <button onclick="startForm('cv')">🧑‍💼<b>Créer mon CV</b><small>CV professionnel avec photo</small></button>
+      <button onclick="startForm('motivation')">✍️<b>Lettre de motivation</b><small>Pour une candidature</small></button>
+      <button onclick="startForm('devis')">🧾<b>Créer un devis</b><small>Devis professionnel</small></button>
+      <button onclick="startForm('lettre')">✉️<b>Lettre professionnelle</b><small>Lettre personnalisée</small></button>
+    </div>
+    <div class="track"><b>🔎 Suivre une demande</b><p>Entrez votre numéro de demande.</p><div><input id="trackCode" placeholder="Ex. PD-123456"><button class="primary" onclick="trackRequest()">Suivre</button></div></div>
+  </section>
+
+  <section id="form" class="view">
+    <button class="back" onclick="show('home')">← Retour</button>
+    <div id="formBox"></div>
+  </section>
+
+  <section id="success" class="view">
+    <div class="panel center"><div class="ok">✓</div><h1>Demande envoyée !</h1><p>Votre numéro de demande :</p><div id="newCode" class="code"></div><p id="newPrice" style="color:#667085;margin-top:-8px"></p><p>Gardez ce numéro pour suivre votre demande.</p><button class="primary wide" onclick="trackNew()">Suivre ma demande</button><button class="secondary wide" onclick="show('home')">Nouvelle demande</button></div>
+  </section>
+
+  <section id="tracking" class="view"><button class="back" onclick="show('home')">← Accueil</button><div id="trackingBox"></div></section>
+
+  <section id="adminLogin" class="view"><button class="back" onclick="show('home')">← Accueil</button><div class="panel center"><div class="lock">🔐</div><h1>Espace administrateur</h1><p>Connectez-vous pour gérer les demandes.</p><input id="adminPass" type="password" placeholder="Mot de passe"><button class="primary wide" onclick="loginAdmin()">Se connecter</button><small>Accès privé.</small></div></section>
+
+  <section id="admin" class="view">
+    <div class="adminHead"><div><span>ADMINISTRATION</span><h1>Demandes reçues</h1></div><button onclick="logoutAdmin()">Déconnexion</button></div>
+    <div class="stats"><div><b id="statAll">0</b><small>Total</small></div><div><b id="statPending">0</b><small>En attente</small></div><div><b id="statPayment">0</b><small>Paiement signalé</small></div><div><b id="statPaid">0</b><small>Payées</small></div></div>
+    <input id="adminSearch" class="full" placeholder="🔎 Rechercher par numéro ou nom..." oninput="renderAdmin()">
+    <div id="adminList"></div>
+  </section>
+
+  <section id="detail" class="view"><button class="back" onclick="renderAdmin()">← Retour aux demandes</button><div id="detailBox"></div></section>
+</main>
+<footer class="siteFooter">JONAS RORO — Documents professionnels</footer>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
