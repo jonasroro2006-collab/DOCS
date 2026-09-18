@@ -56,5 +56,26 @@
 <footer class="siteFooter">JONAS RORO — Documents professionnels</footer>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
+
+<div class="admin-access-box" id="adminAccessBox">
+  <button type="button" class="admin-access-btn" onclick="openAdminAccess()">
+    🔐 Espace administrateur
+  </button>
+  <div class="admin-access-hint">Accès réservé à l’administrateur</div>
+</div>
+
+<div class="admin-login-overlay" id="adminLoginOverlay" aria-hidden="true">
+  <div class="admin-login-card">
+    <button type="button" class="admin-close" onclick="closeAdminAccess()" aria-label="Fermer">×</button>
+    <div class="admin-login-icon">🔐</div>
+    <h2>Espace administrateur</h2>
+    <p>Entrez votre mot de passe pour accéder à la gestion des demandes.</p>
+    <input id="adminPasswordInput" type="password" inputmode="numeric" autocomplete="current-password"
+           placeholder="Mot de passe">
+    <button type="button" class="admin-login-submit" onclick="loginAdmin()">Se connecter</button>
+    <div id="adminLoginMessage" class="admin-login-message"></div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -54,3 +54,7 @@ Aucune confirmation automatique de Wave n'est prétendue sans API.
 ## GitHub Pages
 Décompresse le ZIP et envoie les fichiers à la racine du dépôt :
 `index.html`, `styles.css`, `app.js`, `manifest.json`, `sw.js`, `supabase.sql`, `README.md`.
+
+
+### V7 — accès administrateur visible
+Un bouton « 🔐 Espace administrateur » est visible en bas de l'accueil. Le mot de passe est `9512369`. L'accès reste une protection côté navigateur ; pour une sécurité forte, utilisez une authentification serveur/Supabase Auth.

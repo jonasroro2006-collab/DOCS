@@ -150,3 +150,43 @@ const p=new URLSearchParams(location.search).get("demande");if(p){$("trackCode")
 })();
 
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.activeElement?.id==="adminPass")loginAdmin()});
+
+
+/* V7 - Bouton administrateur visible */
+function openAdminAccess(){
+  const overlay=document.getElementById('adminLoginOverlay');
+  const input=document.getElementById('adminPasswordInput');
+  const msg=document.getElementById('adminLoginMessage');
+  if(!overlay) return;
+  overlay.classList.add('show');
+  overlay.setAttribute('aria-hidden','false');
+  if(msg){msg.textContent='';msg.className='admin-login-message';}
+  setTimeout(()=>input && input.focus(),50);
+}
+function closeAdminAccess(){
+  const overlay=document.getElementById('adminLoginOverlay');
+  if(!overlay) return;
+  overlay.classList.remove('show');
+  overlay.setAttribute('aria-hidden','true');
+}
+function loginAdmin(){
+  const input=document.getElementById('adminPasswordInput');
+  const msg=document.getElementById('adminLoginMessage');
+  const password=input ? input.value : '';
+  if(password === '9512369'){
+    // Reuse the existing private admin route.
+    const base=window.location.href.split('?')[0].split('#')[0];
+    window.location.href=base+'?admin=1';
+    return;
+  }
+  if(msg){
+    msg.textContent='Mot de passe incorrect.';
+    msg.className='admin-login-message error';
+  }
+}
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') closeAdminAccess();
+  if(e.key==='Enter' && document.getElementById('adminLoginOverlay')?.classList.contains('show')){
+    loginAdmin();
+  }
+});
